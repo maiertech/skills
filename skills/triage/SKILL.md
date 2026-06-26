@@ -30,8 +30,8 @@ request description are in your context.
 ### 2. Prompt the user for the base branch
 
 Ask the user for the base branch that the pull request merges into. Offer
-`origin/main` as the default option. Also offer `origin/develop` and user text
-input.
+`origin/main` as the default, `origin/develop` as a second option, and a
+free-text option to type in any other branch.
 
 This step is done when a non-empty base branch is recorded in your context.
 
@@ -46,8 +46,7 @@ in your context, and at least one file has changed.
 
 ### 4. Read the changed files
 
-Skim every changed file until you can name its feature area and judge its risk.
-You don't need to read every line.
+Skim every changed file. You don't need to read every line.
 
 This step is done when every changed file has been read enough to identify its
 feature area and judge its risk; a file is not done until both judgments are
@@ -80,7 +79,7 @@ Anything in the following categories is always high risk:
 - Breaking changes
 - Anything encryption
 
-The following findings justify categorisation one level higher:
+The following findings justify categorisation one level higher, capped at High:
 
 - Big refactors
 - Insufficient test coverage
@@ -92,7 +91,8 @@ If none of the above apply, the feature is Low.
 
 ## Output format
 
-Use this exact format:
+Use this exact format, repeating the matching block for every feature at that
+risk level:
 
 ```
 ### High 🔴
@@ -101,20 +101,13 @@ Reason: <one sentence why this is high-risk>
 - `path/to/file.ext` (added|modified|deleted)
 - `path/to/other.ext` (added|modified|deleted)
 
-_Annotation:_ Repeat for every high-risk feature.
-
 ### Medium 🟠
 **<Feature name>**
 Reason: <one sentence why this is medium-risk>
 - `path/to/file.ext` (added|modified|deleted)
 
-_Annotation:_ Repeat for every medium-risk feature.
-
 ### Low 🟡
-
 **<Feature name>**
 Reason: <one sentence why this is low-risk>
 - `path/to/file.ext` (added|modified|deleted)
-
-_Annotation:_ Repeat for every low-risk feature.
 ```
