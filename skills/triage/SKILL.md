@@ -57,6 +57,9 @@ names, check the issue and pull request descriptions. You can also come up with
 your own concise names, for example, 'authentication', 'user management',
 'database migrations', or 'error handling'.
 
+This step is done when every changed file appears in exactly one feature group
+and every group has a name.
+
 ### 6. Assign risk levels to features
 
 Assign each feature to one of **High**, **Medium**, or **Low**.
@@ -76,6 +79,9 @@ The following findings justify categorisation one level higher:
 - Changes unrelated to the issue and pull request descriptions.
 - Features with lots of files changed.
 - Dependency changes not related to any feature.
+
+This step is done when every feature group has a High, Medium, or Low assignment
+and a one-sentence reason for that assignment.
 
 ## Output format
 
