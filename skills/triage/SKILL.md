@@ -9,11 +9,8 @@ disable-model-invocation: true
 
 ## Goal
 
-Produce a list of features to review. The list is groups features by risk (high,
-medium, low).
-
-Do not review the pull request. Do not make changes to the code. Do not make
-suggestions what to review.
+Triage the pull request. Produce a list of features to review, grouped by risk.
+Do not make suggestions for what to review — only produce the list.
 
 ## Instructions
 
@@ -36,7 +33,7 @@ Ask the user for the base branch that the pull request merges into. Offer
 `origin/main` as the default option. Also offer `origin/develop` and user text
 input.
 
-This step is done when you have a non-empty base branch.
+This step is done when a non-empty base branch is recorded in your context.
 
 ### 3. Compute the diff
 
@@ -44,11 +41,17 @@ Run `git diff --name-status <base>...HEAD` for a file-level overview, then
 `git diff <base>...HEAD` to see the actual changes. If there are no changes,
 tell the user and stop.
 
+This step is done when you have both the file-level overview and the full diff
+in your context, and at least one file has changed.
+
 ### 4. Read the changed files
 
-For every changed file, read enough of the file to understand what feature area
-it belongs to and how risky it is. You don't need to read every line of every
-file. Read enough to categorise it.
+Skim every changed file until you can name its feature area and judge its risk.
+You don't need to read every line.
+
+This step is done when every changed file has been read enough to identify its
+feature area and judge its risk; a file is not done until both judgments are
+made.
 
 ### 5. Group files by feature
 
@@ -64,7 +67,7 @@ and every group has a name.
 
 Assign each feature to one of **High**, **Medium**, or **Low**.
 
-Anything in one of the following categories needs to be ranked ad high risk:
+Anything in one of the following categories needs to be ranked as high risk:
 
 - Authentication or authorization
 - Payment and billing
@@ -90,7 +93,7 @@ Use this exact format:
 ```
 ### High 🔴
 **<Feature name>**
-Reason: <one sentence why this is high risk>
+Reason: <one sentence why this is high-risk>
 - `path/to/file.ext` (added|modified|deleted)
 - `path/to/other.ext` (added|modified|deleted)
 
@@ -98,7 +101,7 @@ _Annotation:_ Repeat for every high-risk feature.
 
 ### Medium 🟠
 **<Feature name>**
-Reason: <one sentence why this is medium risk>
+Reason: <one sentence why this is medium-risk>
 - `path/to/file.ext` (added|modified|deleted)
 
 _Annotation:_ Repeat for every medium-risk feature.
@@ -106,6 +109,7 @@ _Annotation:_ Repeat for every medium-risk feature.
 ### Low 🟡
 
 **<Feature name>**
+Reason: <one sentence why this is low-risk>
 - `path/to/file.ext` (added|modified|deleted)
 
 _Annotation:_ Repeat for every low-risk feature.
