@@ -2,8 +2,6 @@
 
 A collection of AI coding skills.
 
-[![skills.sh](https://skills.sh/b/maiertech/skills)](https://skills.sh/maiertech/skills)
-
 ## Installation
 
 Install the whole collection:
