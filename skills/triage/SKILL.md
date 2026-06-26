@@ -93,7 +93,7 @@ The following findings justify categorisation one level higher:
 - Features with lots of files changed.
 - Dependency changes not related to any feature.
 
-### 7. Output format
+## Output format
 
 Use this exact format:
 
@@ -111,12 +111,12 @@ _Annotation:_ Repeat for every high-risk feature.
 Reason: <one sentence why this is medium risk>
 - `path/to/file.ext` (added|modified|deleted)
 
-_Annotation:_ Repeat for every high-risk feature.
+_Annotation:_ Repeat for every medium-risk feature.
 
 ### Low 🟡
 
 **<Feature name>**
 - `path/to/file.ext` (added|modified|deleted)
 
-_Annotation:_ Repeat for every high-risk feature.
+_Annotation:_ Repeat for every low-risk feature.
 ```
