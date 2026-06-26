@@ -91,7 +91,7 @@ The following findings justify categorisation one level higher:
 - Insufficient test coverage
 - Changes unrelated to the issue and pull request descriptions.
 - Features with lots of files changed.
-- Dependecy changes not related to any feature.
+- Dependency changes not related to any feature.
 
 ### 7. Output format
 
