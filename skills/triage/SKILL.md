@@ -17,36 +17,20 @@ suggestions what to review.
 
 ## Instructions
 
-### 1. Prompt the user for the issue description
+### 1. Get the issue and pull request descriptions
 
-Ask the user if they can provide an issue ID.
+Ask the user for both an issue ID and a pull request ID.
 
-If they provide an issue ID, check if you have access to an MCP server that you
-can use to read the issue. For example the GitHub MCP server or the Atlassian
-MCP server. Then read the issue description.
+For each ID the user provides, check whether you have access to an MCP server
+that can read it — the GitHub MCP server or the Atlassian MCP server are the
+common ones — and read the description through it. If the user does not provide
+an ID, or the MCP lookup fails, ask the user to paste the description or write
+one.
 
-If they don't provide an issue ID or reading the issue for the provided ID
-fails, ask the user to copy the issue description or write an issue description.
+This step is done when both a non-empty issue description and a non-empty pull
+request description are in your context.
 
-This step is done when you have added a non-empty issue description to your
-context.
-
-### 2. Prompt the user for the pull request description
-
-Ask the user if they can provide an pull request ID.
-
-If they provide a pull request ID, check if you have access to an MCP server
-that you can use to read the pull request. For example the GitHub MCP server or
-the Atlassian MCP server. Then read the pull request description.
-
-If they don't provide a pull request ID or reading the pull request for the
-provided ID fails, ask the user to copy the pull request description or write a
-pull request description.
-
-This step is done when you have added a non-empty pull request description to
-your context.
-
-### 3. Prompt the user for the base branch
+### 2. Prompt the user for the base branch
 
 Ask the user for the base branch that the pull request merges into. Offer
 `origin/main` as the default option. Also offer `origin/develop` and user text
@@ -54,26 +38,26 @@ input.
 
 This step is done when you have a non-empty base branch.
 
-### 4. Compute the diff
+### 3. Compute the diff
 
 Run `git diff --name-status <base>...HEAD` for a file-level overview, then
 `git diff <base>...HEAD` to see the actual changes. If there are no changes,
 tell the user and stop.
 
-### 5. Read the changed files
+### 4. Read the changed files
 
 For every changed file, read enough of the file to understand what feature area
 it belongs to and how risky it is. You don't need to read every line of every
 file. Read enough to categorise it.
 
-### 6. Group files by feature
+### 5. Group files by feature
 
 Group files by what the code does, not by file type. To derive the feature
 names, check the issue and pull request descriptions. You can also come up with
 your own concise names, for example, 'authentication', 'user management',
 'database migrations', or 'error handling'.
 
-### 7. Assign risk levels to features
+### 6. Assign risk levels to features
 
 Assign each feature to one of **High**, **Medium**, or **Low**.
 
