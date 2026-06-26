@@ -1,7 +1,7 @@
 ---
 name: triage
 description:
-  Use this skill when you are asked to triage a pull request for review.
+  "Use this skill when you are asked to triage a pull request for review."
 disable-model-invocation: true
 ---
 
