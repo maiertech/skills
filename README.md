@@ -12,10 +12,10 @@ Install the whole collection:
 npx skills add maiertech/skills
 ```
 
-Or install a single skill:
+Or install a single skill by name:
 
 ```sh
-npx skills add maiertech/skills/triage
+npx skills add maiertech/skills --skill triage
 ```
 
 The `skills` CLI installs into the AI agent you are running (Claude Code,
