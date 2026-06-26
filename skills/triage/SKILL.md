@@ -67,7 +67,12 @@ and every group has a name.
 
 Assign each feature to one of **High**, **Medium**, or **Low**.
 
-Anything in one of the following categories needs to be ranked as high risk:
+This step is done when every feature group has a High, Medium, or Low assignment
+and a one-sentence reason for that assignment.
+
+## Risk classification
+
+Anything in the following categories is always high risk:
 
 - Authentication or authorization
 - Payment and billing
@@ -83,8 +88,7 @@ The following findings justify categorisation one level higher:
 - Features with lots of files changed.
 - Dependency changes not related to any feature.
 
-This step is done when every feature group has a High, Medium, or Low assignment
-and a one-sentence reason for that assignment.
+If none of the above apply, the feature is Low.
 
 ## Output format
 
