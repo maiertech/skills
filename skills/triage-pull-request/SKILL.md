@@ -69,6 +69,16 @@ Assign each feature to one of **High**, **Medium**, or **Low**.
 This step is done when every feature group has a High, Medium, or Low assignment
 and a one-sentence reason for that assignment.
 
+### 7. Write a brief summary
+
+Write a short, human-readable paragraph (2–4 sentences) that describes what the
+pull request does in plain language. Draw from the issue description, the pull
+request description, and the diff you have read. Do not list files or repeat
+risk levels — just explain the change as you would to a colleague.
+
+This step is done when the summary is written and stands on its own without
+needing the file list to make sense.
+
 ## Risk classification
 
 Anything in the following categories is always high risk:
@@ -91,10 +101,14 @@ If none of the above apply, the feature is Low.
 
 ## Output format
 
-Use this exact format, repeating the matching block for every feature at that
-risk level:
+Start with the summary, then list features grouped by risk level. Use this
+exact format, repeating the matching block for every feature at that risk level:
 
 ```
+## Summary
+
+<2–4 sentence plain-language description of what the pull request does>
+
 ### High ⚡⚡⚡
 **<Feature name>**
 Reason: <one sentence why this is high-risk>
