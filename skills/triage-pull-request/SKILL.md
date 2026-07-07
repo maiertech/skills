@@ -1,16 +1,13 @@
 ---
 name: triage-pull-request
-description:
-  "Use this skill when you are asked to triage a pull request for review."
 disable-model-invocation: true
 ---
 
-# Triage Pull Request
+# Triage a pull request
 
 ## Goal
 
-Triage the pull request. Produce a list of features to review, grouped by risk.
-Do not make suggestions for what to review — only produce the list.
+Produce a list of features to review, grouped by risk — nothing more.
 
 ## Instructions
 
@@ -18,11 +15,9 @@ Do not make suggestions for what to review — only produce the list.
 
 Ask the user for both an issue ID and a pull request ID.
 
-For each ID the user provides, check whether you have access to an MCP server
-that can read it — the GitHub MCP server or the Atlassian MCP server are the
-common ones — and read the description through it. If the user does not provide
-an ID, or the MCP lookup fails, ask the user to paste the description or write
-one.
+For each ID, try to fetch the description via an available MCP server (GitHub or
+Atlassian). If no ID is provided or the lookup fails, ask the user to paste the
+description or write one.
 
 This step is done when both a non-empty issue description and a non-empty pull
 request description are in your context.
@@ -46,13 +41,23 @@ in your context, and at least one file has changed.
 
 ### 4. Read the changed files
 
-Skim every changed file. You don't need to read every line.
+Skim every changed file.
 
 This step is done when every changed file has been read enough to identify its
 feature area and judge its risk; a file is not done until both judgments are
 made.
 
-### 5. Group files by feature
+### 5. Write a brief summary
+
+Write a short, human-readable paragraph that describes what the pull request
+does in plain language. Draw from the issue description, the pull request
+description, and the diff you have read. Explain the change as you would to a
+colleague, using plain language without file paths or risk levels.
+
+This step is done when the summary is written and stands on its own without
+needing the file list to make sense.
+
+### 6. Group files by feature
 
 Group files by what the code does, not by file type. To derive the feature
 names, check the issue and pull request descriptions. You can also come up with
@@ -62,22 +67,13 @@ your own concise names, for example, 'authentication', 'user management',
 This step is done when every changed file appears in exactly one feature group
 and every group has a name.
 
-### 6. Assign risk levels to features
+### 7. Assign risk levels to features
 
-Assign each feature to one of **High**, **Medium**, or **Low**.
+Assign each feature to one of **High**, **Medium**, or **Low**, applying the
+rules in **Risk classification** below.
 
 This step is done when every feature group has a High, Medium, or Low assignment
 and a one-sentence reason for that assignment.
-
-### 7. Write a brief summary
-
-Write a short, human-readable paragraph (2–4 sentences) that describes what the
-pull request does in plain language. Draw from the issue description, the pull
-request description, and the diff you have read. Do not list files or repeat
-risk levels — just explain the change as you would to a colleague.
-
-This step is done when the summary is written and stands on its own without
-needing the file list to make sense.
 
 ## Risk classification
 
@@ -101,8 +97,8 @@ If none of the above apply, the feature is Low.
 
 ## Output format
 
-Start with the summary, then list features grouped by risk level. Use this
-exact format, repeating the matching block for every feature at that risk level:
+Start with the summary, then list features grouped by risk level. Use this exact
+format, repeating the matching block for every feature at that risk level:
 
 ```
 ## Summary
