@@ -1,5 +1,6 @@
 ---
 name: triage-pull-request
+description: Produces a risk-grouped list of features to review in a pull request.
 disable-model-invocation: true
 ---
 
