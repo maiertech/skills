@@ -11,9 +11,7 @@ disable-model-invocation: true
 ## Goal
 
 Find gaps between intent and implementation in a set of code changes, and surface
-security risks. Every finding is a place where the code diverges from what was
-asked, expected, or described — or where the implementation introduces a
-security weakness.
+security risks.
 
 ## Instructions
 
@@ -26,10 +24,10 @@ Ask the user which type of review they want:
 - **Agent diff** — uncommitted changes on the current branch (work an agent just
   did). Includes both staged and unstaged changes.
 - **Feature area** — one feature area from a recent `triage-pull-request` run.
-  Search the conversation history for the triage output, extract the feature
-  areas and their file lists, present them as numbered choices, and ask the user
-  to pick one.   If no triage output is found, ask the user to describe the feature area and
-  determine which files from the diff belong to it.
+  Search the conversation history for triage output. If found, extract the
+  feature areas and their file lists, present them as numbered choices, and ask
+  the user to pick one. If not found, ask the user to describe the feature area
+  and determine which files from the diff belong to it.
 
 For all review types, ask the user for an issue link. Parse the URL to determine
 the platform (GitHub, Jira) and extract the owner, repo, and issue number. Use
@@ -59,15 +57,17 @@ for the relevant files, and at least one file has changed.
 
 ### 3. Read the changed files
 
-Read every changed file in full — not just the diff hunks. Trace into unchanged
-code where the diff touches interfaces, function signatures, or call boundaries.
-Check whether tests exist for the changed behaviour. Assess security: input
-validation, authentication, authorization, data handling, and error exposure.
+Read every changed file in full. Trace into unchanged code where the diff
+touches interfaces, function signatures, or call boundaries. Check whether tests
+exist for the changed behaviour.
 
-This step is done when every changed file has been read in full, every
-change has been assessed against the intent context, and every file has been
-checked for security concerns. A file is not done until all three assessments
-are complete.
+For each file, assess:
+- **Intent**: does every change serve the stated requirement?
+- **Security**: input validation, authentication, authorization, data handling,
+  error exposure.
+
+This step is done when every changed file has been read in full and assessed for
+both intent and security. A file is not done until both assessments are complete.
 
 ### 4. Report findings
 
