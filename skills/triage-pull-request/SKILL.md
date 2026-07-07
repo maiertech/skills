@@ -1,6 +1,7 @@
 ---
 name: triage-pull-request
-description: Produces a risk-grouped list of features to review in a pull request.
+description:
+  Produces a risk-grouped list of features to review in a pull request.
 disable-model-invocation: true
 ---
 
@@ -8,17 +9,19 @@ disable-model-invocation: true
 
 ## Goal
 
-Produce a list of features to review, grouped by risk — nothing more.
+Produce a list of features to review, grouped by risk.
 
 ## Instructions
 
 ### 1. Get the issue and pull request descriptions
 
-Ask the user for both an issue ID and a pull request ID.
+Ask the user for a link to the issue and a link to the pull request. Parse each
+URL to determine the platform (GitHub, Atlassian) and extract the owner, repo,
+and number.
 
-For each ID, try to fetch the description via an available MCP server (GitHub or
-Atlassian). If no ID is provided or the lookup fails, ask the user to paste the
-description or write one.
+For each link, try to fetch the description via an available MCP server (GitHub
+or Atlassian). If no link is provided or the lookup fails, ask the user to paste
+the description or write one.
 
 This step is done when both a non-empty issue description and a non-empty pull
 request description are in your context.
@@ -50,20 +53,19 @@ made.
 
 ### 5. Write a brief summary
 
-Write a short, human-readable paragraph that describes what the pull request
-does in plain language. Draw from the issue description, the pull request
-description, and the diff you have read. Explain the change as you would to a
-colleague, using plain language without file paths or risk levels.
+Write a paragraph that describes what the pull request does, without file paths
+or risk levels. Draw from the issue description, the pull request description,
+and the diff you have read.
 
 This step is done when the summary is written and stands on its own without
 needing the file list to make sense.
 
 ### 6. Group files by feature
 
-Group files by what the code does, not by file type. To derive the feature
-names, check the issue and pull request descriptions. You can also come up with
-your own concise names, for example, 'authentication', 'user management',
-'database migrations', or 'error handling'.
+Group files by feature area — what the code does. To derive the feature names,
+check the issue and pull request descriptions. You can also come up with your
+own concise names, for example, 'authentication', 'user management', 'database
+migrations', or 'error handling'.
 
 This step is done when every changed file appears in exactly one feature group
 and every group has a name.
