@@ -1,5 +1,6 @@
 ---
 name: triage-issue
+description: Produces a brief implementation plan from an issue so you can start coding immediately.
 disable-model-invocation: true
 ---
 
