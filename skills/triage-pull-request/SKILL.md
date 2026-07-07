@@ -1,11 +1,11 @@
 ---
-name: triage
+name: triage-pull-request
 description:
   "Use this skill when you are asked to triage a pull request for review."
 disable-model-invocation: true
 ---
 
-# Triage
+# Triage Pull Request
 
 ## Goal
 
@@ -95,18 +95,18 @@ Use this exact format, repeating the matching block for every feature at that
 risk level:
 
 ```
-### High 🔴
+### High ⚡⚡⚡
 **<Feature name>**
 Reason: <one sentence why this is high-risk>
 - `path/to/file.ext` (added|modified|deleted)
 - `path/to/other.ext` (added|modified|deleted)
 
-### Medium 🟠
+### Medium ⚡⚡
 **<Feature name>**
 Reason: <one sentence why this is medium-risk>
 - `path/to/file.ext` (added|modified|deleted)
 
-### Low 🟡
+### Low ⚡
 **<Feature name>**
 Reason: <one sentence why this is low-risk>
 - `path/to/file.ext` (added|modified|deleted)
