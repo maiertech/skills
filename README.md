@@ -18,6 +18,23 @@ Cursor, Codex, Windsurf, and others — see the
 
 ## Skills
 
+### code-review
+
+Reviews code changes for intent gaps and security risks — between what was
+specified and what was delivered. Supports three review types:
+
+- **Branch diff** — changes between a base branch and HEAD (a pull request)
+- **Agent diff** — uncommitted changes on the current branch (work an agent just
+  did)
+- **Feature area** — one feature area from a recent `triage-pull-request` run
+
+Findings are classified by severity: 🚨 Critical, 🐛 Error, ⚠️ Warning, 🧭
+Suggestion, ✨ Nitpick.
+
+```sh
+npx skills add maiertech/skills --skill code-review
+```
+
 ### triage-issue
 
 Creates an implementation brief from a GitHub or Jira issue — summarizes what to
@@ -34,21 +51,4 @@ to focus on in a pull request review.
 
 ```sh
 npx skills add maiertech/skills --skill triage-pull-request
-```
-
-### code-review
-
-Reviews code changes for intent gaps and security risks — between what was
-specified and what was delivered. Supports three review types:
-
-- **Branch diff** — changes between a base branch and HEAD (a pull request)
-- **Agent diff** — uncommitted changes on the current branch (work an agent just
-  did)
-- **Feature area** — one feature area from a recent `triage-pull-request` run
-
-Findings are classified by severity: 🚨 Critical, 🐛 Error, ⚠️ Warning, 🧭
-Suggestion, ✨ Nitpick.
-
-```sh
-npx skills add maiertech/skills --skill code-review
 ```
