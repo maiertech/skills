@@ -1,10 +1,10 @@
 ---
-name: triage-issue
-description: Produces a brief implementation plan from an issue so you can start coding immediately.
+name: triage-ticket
+description: Produces a brief implementation plan from a ticket so you can start coding immediately.
 disable-model-invocation: true
 ---
 
-# Triage an issue
+# Triage a ticket
 
 ## Goal
 
@@ -13,31 +13,31 @@ you can start coding immediately.
 
 ## Instructions
 
-### 1. Fetch the issue
+### 1. Fetch the ticket
 
-Ask the user for the issue URL. Parse it to determine the platform (GitHub,
-Bitbucket) and extract the owner, repo, and issue number. Use the appropriate
-MCP server to fetch the issue description and all comments.
+Ask the user for the ticket URL. Parse it to determine the platform (GitHub,
+Bitbucket) and extract the owner, repo, and ticket number. Use the appropriate
+MCP server to fetch the ticket description and all comments.
 
 If the URL cannot be parsed or the MCP lookup fails, ask the user to paste the
-full issue text.
+full ticket text.
 
-This step is done when the issue description and all comments are in your
+This step is done when the ticket description and all comments are in your
 context.
 
-### 2. Summarize the issue
+### 2. Summarize the ticket
 
 Write a 2–3 sentence plain-language summary of what needs to be done,
 incorporating any clarifications or scope changes from the comments. State the
 desired end state, not the process to get there.
 
 This step is done when the summary stands on its own without needing the
-original issue text.
+original ticket text.
 
 ### 3. Explore the codebase
 
 Explore the repository to understand its architecture. Search for existing code
-in the issue's domain — the feature area, affected components, or relevant data
+in the ticket's domain — the feature area, affected components, or relevant data
 models. Trace the call path. Read the files you expect to change, enough to
 understand their current behaviour and interfaces.
 
@@ -56,20 +56,20 @@ This step is done when every anticipated change is listed with its reason.
 
 Suggest how to verify the implementation. Match the existing test infrastructure
 where one exists. Cover both automated tests and manual verification (UI, API,
-CLI). Call out edge cases from the issue or comments.
+CLI). Call out edge cases from the ticket or comments.
 
 This step is done when the testing suggestions cover both automated and manual
 verification paths.
 
 ## Scope assessment
 
-An issue is too large when either condition holds:
+A ticket is too large when either condition holds:
 
 - You cannot describe the full implementation in one sentence.
 - It touches more than three unrelated areas of the codebase.
 
-When an issue is too large, propose a split into smaller, independently
-shippable sub-issues with clear boundaries.
+When a ticket is too large, propose a split into smaller, independently
+shippable sub-tickets with clear boundaries.
 
 ## Output format
 
