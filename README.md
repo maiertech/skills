@@ -35,13 +35,13 @@ Suggestion, ✨ Nitpick.
 npx skills add maiertech/skills --skill code-review
 ```
 
-### triage-issue
+### triage-ticket
 
-Creates an implementation brief from a GitHub or Jira issue — summarizes what to
-build, suggests which files to change, and proposes a testing approach.
+Creates an implementation brief from a ticket (GitHub or Jira) — summarizes what
+to build, suggests which files to change, and proposes a testing approach.
 
 ```sh
-npx skills add maiertech/skills --skill triage-issue
+npx skills add maiertech/skills --skill triage-ticket
 ```
 
 ### triage-pull-request
