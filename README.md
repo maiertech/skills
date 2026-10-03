@@ -18,21 +18,13 @@ Cursor, Codex, Windsurf, and others — see the
 
 ## Skills
 
-### code-review
+### code-review-preflight
 
-Reviews code changes for intent gaps and security risks — between what was
-specified and what was delivered. Supports three review types:
-
-- **Branch diff** — changes between a base branch and HEAD (a pull request)
-- **Agent diff** — uncommitted changes on the current branch (work an agent just
-  did)
-- **Feature area** — one feature area from a recent `triage-pull-request` run
-
-Findings are classified by severity: 🚨 Critical, 🐛 Error, ⚠️ Warning, 🧭
-Suggestion, ✨ Nitpick.
+Maps a pull request before reviewing it — what it changes, where to start,
+and what could matter most. Run this before a code-review skill.
 
 ```sh
-npx skills add maiertech/skills --skill code-review
+npx skills add maiertech/skills --skill code-review-preflight
 ```
 
 ### triage-ticket
@@ -42,13 +34,4 @@ to build, suggests which files to change, and proposes a testing approach.
 
 ```sh
 npx skills add maiertech/skills --skill triage-ticket
-```
-
-### triage-pull-request
-
-Creates a risk-based list of features and files to help a reviewer decide what
-to focus on in a pull request review.
-
-```sh
-npx skills add maiertech/skills --skill triage-pull-request
 ```
