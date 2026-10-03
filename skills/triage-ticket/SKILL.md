@@ -1,6 +1,8 @@
 ---
 name: triage-ticket
-description: Produces a brief implementation plan from a ticket so you can start coding immediately.
+description:
+  Reviews a ticket against the readiness checklist and surfaces open questions
+  the author needs to answer before it can be implemented.
 disable-model-invocation: true
 ---
 
@@ -8,93 +10,97 @@ disable-model-invocation: true
 
 ## Goal
 
-Produce a brief — what to build, where to build it, and how to verify it — so
-you can start coding immediately.
+Give a `_ready_` / `not ready` verdict on the ticket. If it is `_ready_`, say
+so. If not, surface every gap as a categorized open question so the author can
+refine the ticket.
+
+The skill does not plan the implementation, list files, or suggest tests.
+Refining the ticket is a prerequisite for those steps; until the ticket is
+`_ready_`, planning is premature.
+
+## Readiness checklist
+
+Walk the ticket against these seven areas:
+
+- **Problem & Context** — who needs this and why.
+- **Scope** — what is in, what is explicitly out.
+- **Acceptance Criteria** — Given/When/Then or concrete test cases.
+- **Edge Cases & Errors** — validation errors, timeouts, fallbacks.
+- **Technical Design** — DB changes, API payloads, code boundaries.
+- **Dependencies** — external blockers, access keys, mocks.
+- **Testing Plan** — automated test levels and manual checks.
 
 ## Instructions
 
 ### 1. Fetch the ticket
 
-Ask the user for the ticket URL. Parse it to determine the platform (GitHub,
-Bitbucket) and extract the owner, repo, and ticket number. Use the appropriate
-MCP server to fetch the ticket description and all comments.
+Ask the user for the ticket URL. Parse it to determine the platform (GitHub or
+Jira) and extract the owner, repo / project key, and ticket number. Fetch the
+ticket description and the comments that change the spec — ignore status pings,
+bot comments, and merge noise.
 
-If the URL cannot be parsed or the MCP lookup fails, ask the user to paste the
-full ticket text.
+If the URL cannot be parsed or the fetch fails, stop. Surface the reason the
+fetch failed and ask the user to fix the access. Do not fall back to a pasted
+copy — the fetch is the inspection gate; bypassing it defeats the gate.
 
-This step is done when the ticket description and all comments are in your
-context.
+This step is done when the ticket description and the spec-relevant comments are
+in your context.
 
-### 2. Summarize the ticket
+### 2. Walk the checklist
 
-Write a 2–3 sentence plain-language summary of what needs to be done,
-incorporating any clarifications or scope changes from the comments. State the
-desired end state, not the process to get there.
+For each of the seven areas, judge whether the ticket establishes what the area
+requires. Quote the ticket where it is ambiguous. When uncertain, mark the area
+as a gap — the human will confirm.
 
-This step is done when the summary stands on its own without needing the
-original ticket text.
+This step is done when every one of the seven areas has been judged `_ready_` or
+marked as a gap, every gap has at least one open question, and the State
+paragraph is written.
 
-### 3. Explore the codebase
+### 3. Output the triage note
 
-Explore the repository to understand its architecture. Search for existing code
-in the ticket's domain — the feature area, affected components, or relevant data
-models. Trace the call path. Read the files you expect to change, enough to
-understand their current behaviour and interfaces.
+Default shape — the ticket is ready:
 
-This step is done when you can name every file you expect to modify and explain
-why each one needs to change.
+```markdown
+## State
 
-### 4. List files to change
+<One paragraph: what the ticket establishes.>
 
-List the specific files that need to be created, modified, or deleted, with a
-one-sentence reason for each. Group by feature area if there are more than five
-files.
+## Ready
 
-This step is done when every anticipated change is listed with its reason.
-
-### 5. Suggest testing approach
-
-Suggest how to verify the implementation. Match the existing test infrastructure
-where one exists. Cover both automated tests and manual verification (UI, API,
-CLI). Call out edge cases from the ticket or comments.
-
-This step is done when the testing suggestions cover both automated and manual
-verification paths.
-
-## Scope assessment
-
-A ticket is too large when either condition holds:
-
-- You cannot describe the full implementation in one sentence.
-- It touches more than three unrelated areas of the codebase.
-
-When a ticket is too large, propose a split into smaller, independently
-shippable sub-tickets with clear boundaries.
-
-## Output format
-
-Use this exact format:
-
+The ticket establishes every checklist area. No refinement needed.
 ```
-## Summary
 
-<2–3 sentence plain-language description of what needs to be done>
+Otherwise — gaps exist. Replace `## Ready` with `## Open questions` and group by
+checklist area; omit areas that are `_ready_`:
 
-## Scope
+```markdown
+## State
 
-<One of: "Fits one implementation." or "Too large — consider splitting:" followed by proposed sub-issues>
+<One paragraph: what the ticket establishes, what it leaves open.>
 
-## Files to change
+## Open questions
 
-- `path/to/file` — <one-sentence reason>
-- `path/to/other` — <one-sentence reason>
+### Problem & Context
 
-## Start here
+- <question>
 
-<One sentence: which file to open first and what to do in it>
+### Scope
 
-## Testing
+- <question>
 
-- <testing suggestion>
-- <testing suggestion>
+### Edge Cases & Errors
+
+- <question>
+
+### Technical Design
+
+- <question>
+
+### Dependencies
+
+- <question>
+
+### Testing Plan
+
+- <question>
 ```
