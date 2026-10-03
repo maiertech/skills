@@ -20,8 +20,8 @@ Cursor, Codex, Windsurf, and others — see the
 
 ### code-review-preflight
 
-Maps a pull request before reviewing it — what it changes, where to start,
-and what could matter most. Run this before a code-review skill.
+Maps a pull request before reviewing it — what it changes, where to start, and
+what could matter most. Run this before a code-review skill.
 
 ```sh
 npx skills add maiertech/skills --skill code-review-preflight
@@ -29,8 +29,9 @@ npx skills add maiertech/skills --skill code-review-preflight
 
 ### triage-ticket
 
-Creates an implementation brief from a ticket (GitHub or Jira) — summarizes what
-to build, suggests which files to change, and proposes a testing approach.
+Reviews a ticket (GitHub or Jira) against the readiness checklist and surfaces
+open questions the author needs to answer before it can be implemented. Stops if
+the ticket cannot be fetched — no paste fallback.
 
 ```sh
 npx skills add maiertech/skills --skill triage-ticket
